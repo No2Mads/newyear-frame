@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>New Year Frame</title>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.15); /* чтобы было видно на телефоне */
+  overflow: hidden;
+}
+
+.frame {
+  position: fixed;
+  inset: 20px;
+  border-radius: 40px;
+  border: 4px solid rgba(255,255,255,0.7);
+  box-shadow:
+    0 0 20px rgba(0,255,255,0.7),
+    0 0 60px rgba(255,0,255,0.5);
+  pointer-events: none;
+}
+
+.light {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: blink 2s infinite alternate;
+}
+
+@keyframes blink {
+  from { opacity: 0.2; }
+  to { opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<div class="frame"></div>
+
+<script>
+const colors = ["#ff3b3b","#ffd93b","#3bff6f","#3bdcff","#b83bff"];
+for (let i = 0; i < 120; i++) {
+  const l = document.createElement("div");
+  l.className = "light";
+  l.style.background = colors[Math.floor(Math.random()*colors.length)];
+  l.style.top = Math.random()*100 + "%";
+  l.style.left = Math.random()*100 + "%";
+  l.style.animationDuration = (1 + Math.random()*2) + "s";
+  document.body.appendChild(l);
+}
+</script>
+
+</body>
+</html>
